@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h1 class="h4">Maşınlarım</h1>
+  <div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#addCarModal"
+    >
+      Dövlət qeydiyyatı
+    </button>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="addCarModal"
+  tabindex="-1"
+  aria-labelledby="addCarModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCarModalLabel">Maşın əlavə et</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="internalCarForm" (ngSubmit)="addInternalCar()">
+          <div class="mb-3">
+            <label for="carName" class="form-label me-2">Marka</label>
+            <select
+              name="carName"
+              id="carName"
+              [(ngModel)]="selectedBrandId"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="getModels()"
+            >
+              <option value="" disabled selected>Marka Seçiniz</option>
+              <option *ngFor="let brand of brands" [value]="brand.Id">
+                {{ brand.Name }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="carModel" class="form-label me-2">Model</label>
+            <select name="carModel" id="carModel" formControlName="ModelId">
+              <option value="" disabled selected>Marka Seçiniz</option>
+              <option *ngFor="let model of models" [value]="model.Id">
+                {{ model.Name }}
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label for="carNumber">Qeydiyyat nömrəsi</label>
+            <input
+              type="text"
+              class="form-control mb-2"
+              id="carNumber"
+              placeholder="00-XX-000"
+              formControlName="CarNumber"
+            />
+          </div>
+
+          <div>
+            <label for="techNumber">Texpasport nömrəsi</label>
+            <input
+              type="text"
+              class="form-control mb-2"
+              id="techNumber"
+              placeholder="1ZXCUN3"
+              formControlName="TechNumber"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Bağla
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#addCarModal"
+            >
+              Maşın əlavə et
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-internal-car></app-internal-car>

@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BrandService } from '../../services/brand.service';
-import { BrandModel } from '../../models/cars/brandModel';
-import { ModelModel } from '../../models/cars/modelModel';
-import { ModelService } from '../../services/model.service';
 import { UserService } from '../../services/user.service';
 import { RegisterRequestModel } from '../../models/user/registerRequest';
-import { Gender } from '../../models/user/gender';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiDataResponseModel } from '../../models/common/apiDataResponse';
 import { UserResponseModel } from '../../models/user/userResponse';

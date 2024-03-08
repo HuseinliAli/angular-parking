@@ -7,17 +7,30 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavComponent } from './components/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginGuard } from './guards/login.guard';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CarComponent } from './components/car/car.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InternalCarComponent } from './components/car/internal-car/internal-car.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, NavComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    NavComponent,
+    LoginComponent,
+    CarComponent,
+    InternalCarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [LoginGuard],
   bootstrap: [AppComponent],

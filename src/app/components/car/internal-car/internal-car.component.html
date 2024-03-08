@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Marka & Model</th>
+      <th scope="col">Texpasport nömrəsi</th>
+      <th scope="col">Qeydiyyat nömrəsi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <th>{{ car.BrandModel }}</th>
+      <td>{{ car.TechNumber }}</td>
+      <td>{{ car.CarNumber }}</td>
+    </tr>
+  </tbody>
+</table>

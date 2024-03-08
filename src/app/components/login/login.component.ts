@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('p-user-id', this.response.Data.Id);
         localStorage.setItem('p-logged-in', this.response.Success.toString());
         this.userService.loginSubject.next(true);
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard/cars']);
       }
     });
   }
