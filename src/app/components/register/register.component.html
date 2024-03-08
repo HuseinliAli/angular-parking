@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+  <div class="col-4">
+    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+      <div class="d-flex justify-content-center">
+        <img
+          src="https://azparking.az/assets/images/logos/logo.png"
+          alt="Logo"
+          width="280"
+        />
+      </div>
+      <label for="name">Ad</label>
+      <input
+        type="text"
+        class="form-control mb-2"
+        id="name"
+        name="name"
+        placeholder="Əli"
+        formControlName="FirstName"
+      />
+      <p
+        class="validation-error"
+        *ngIf="
+          registerForm.get('FirstName')?.hasError('required') &&
+          registerForm.get('FirstName')?.dirty
+        "
+      >
+        Ad daxil edilmədi
+      </p>
+      <label for="surname">Soyad</label>
+      <input
+        type="email"
+        class="form-control mb-2"
+        id="surname"
+        placeholder="Hüseynli"
+        formControlName="LastName"
+      />
+      <p
+        class="validation-error"
+        *ngIf="
+          registerForm.get('LastName')?.hasError('required') &&
+          registerForm.get('LastName')?.dirty
+        "
+      >
+        Soyad daxil edilmədi
+      </p>
+      <label for="email">E-mail adres</label>
+
+      <input
+        type="email"
+        class="form-control mb-2"
+        id="email"
+        placeholder="qaraqan@qaraqan.org"
+        formControlName="EmailAddress"
+      />
+      <p
+        class="validation-error"
+        *ngIf="
+          registerForm.get('EmailAddress')?.hasError('required') &&
+          registerForm.get('EmailAddress')?.dirty
+        "
+      >
+        Email daxil edilmədi
+      </p>
+      <p
+        class="validation-error"
+        *ngIf="
+          registerForm.get('EmailAddress')?.hasError('email') &&
+          registerForm.get('EmailAddress')?.dirty
+        "
+      >
+        Email düzgün formatda daxil edilmədi
+      </p>
+      <label for="password">Şifrə</label>
+      <input
+        type="password"
+        class="form-control mb-2"
+        id="password"
+        placeholder="********"
+        formControlName="Password"
+      />
+
+      <p
+        class="validation-error"
+        *ngIf="
+          registerForm.get('Password')?.hasError('required') &&
+          registerForm.get('Password')?.dirty
+        "
+      >
+        Şifrə daxil edilmədi
+      </p>
+      <button type="submit" class="btn btn-success w-100 p-2">Qeydiyyat</button>
+    </form>
+  </div>
+</div>
