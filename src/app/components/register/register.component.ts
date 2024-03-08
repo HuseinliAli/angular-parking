@@ -3,12 +3,13 @@ import { BrandService } from '../../services/brand.service';
 import { BrandModel } from '../../models/cars/brandModel';
 import { ModelModel } from '../../models/cars/modelModel';
 import { ModelService } from '../../services/model.service';
-import { UserService } from '../../services/register.service';
+import { UserService } from '../../services/user.service';
 import { RegisterRequestModel } from '../../models/user/registerRequest';
-import { RegisterResponseModel } from '../../models/user/registerResponse';
 import { Gender } from '../../models/user/gender';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiDataResponseModel } from '../../models/common/apiDataResponse';
+import { UserResponseModel } from '../../models/user/userResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,13 +17,14 @@ import { ApiDataResponseModel } from '../../models/common/apiDataResponse';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
-  response: ApiDataResponseModel<RegisterResponseModel>;
+  response: ApiDataResponseModel<UserResponseModel>;
   request: RegisterRequestModel;
   registerForm: FormGroup;
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.createRegisterForm();
@@ -42,18 +44,7 @@ export class RegisterComponent implements OnInit {
 
     this.userService.registerUser(this.request).subscribe((data) => {
       this.response = JSON.parse(data.d.toString());
-      console.log(this.response.Message);
+      this.router.navigate(['login']);
     });
   }
-  // getBrands() {
-  //   this.brandService.getBrands().subscribe((data) => {
-  //     this.brands = JSON.parse(data.d.toString());
-  //   });
-  // }
-
-  // getModelsByBrandId(id: number) {
-  //   this.modelService.getModelsByBrandId(id).subscribe((data) => {
-  //     this.models = JSON.parse(data.d.toString());
-  //   });
-  // }
 }

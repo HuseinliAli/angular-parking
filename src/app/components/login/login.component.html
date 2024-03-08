@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-4">
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
       <div class="d-flex justify-content-center">
         <img
           src="https://azparking.az/assets/images/logos/logo.png"
@@ -9,24 +9,52 @@
         />
       </div>
 
-      <label for="floatingInput">E-mail adres</label>
+      <label for="email">E-mail adres</label>
 
       <input
         type="email"
         class="form-control mb-2"
-        id="floatingInput"
+        id="email"
         placeholder="qaraqan@qaraqan.org"
+        formControlName="EmailAddress"
       />
-
-      <label for="floatingPassword">Şifrə</label>
+      <p
+        class="validation-error"
+        *ngIf="
+          loginForm.get('EmailAddress')?.hasError('required') &&
+          loginForm.get('EmailAddress')?.dirty
+        "
+      >
+        Email daxil edilmədi
+      </p>
+      <p
+        class="validation-error"
+        *ngIf="
+          loginForm.get('EmailAddress')?.hasError('email') &&
+          loginForm.get('EmailAddress')?.dirty
+        "
+      >
+        Email düzgün formatda daxil edilmədi
+      </p>
+      <label for="password">Şifrə</label>
       <input
         type="password"
         class="form-control mb-2"
-        id="floatingPassword"
+        id="password"
         placeholder="********"
+        formControlName="Password"
       />
 
-      <button class="btn btn-success w-100 p-2">Giriş</button>
+      <p
+        class="validation-error"
+        *ngIf="
+          loginForm.get('Password')?.hasError('required') &&
+          loginForm.get('Password')?.dirty
+        "
+      >
+        Şifrə daxil edilmədi
+      </p>
+      <button type="submit" class="btn btn-success w-100 p-2">Giriş</button>
     </form>
   </div>
 </div>
