@@ -9,13 +9,13 @@ import { Observable, Subject } from 'rxjs';
 })
 export class CarService {
   apiUrl = 'https://localhost:44345/Services/CarWebService.asmx';
-  private carAdded = new Subject<void>();
+  private carAddedSource = new Subject<void>();
 
-  carAdded$ = this.carAdded.asObservable();
+  carAdded$ = this.carAddedSource.asObservable();
   constructor(private client: HttpClient) {}
 
   addInternalCar(car: InternalCarModel): Observable<ResponseModel> {
-    this.carAdded.next();
+    this.carAddedSource.next();
     return this.client.post<ResponseModel>(`${this.apiUrl}/InternalCarAdd`, {
       request: car,
     });

@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InternalCarModel } from '../../models/cars/internalCar';
 import { ApiResponseModel } from '../../models/common/apiResponse';
 import { ToastrService } from 'ngx-toastr';
+import { InternalCarListModel } from '../../models/cars/internalCarList';
 
 @Component({
   selector: 'app-car',
@@ -19,6 +20,7 @@ export class CarComponent implements OnInit {
   brands: BrandModel[];
   selectedBrandId: number;
   models: ModelModel[];
+  cars: InternalCarListModel[];
   internalCarForm: FormGroup;
   internalCarRequest: InternalCarModel;
   internalCarResponse: ApiResponseModel;
@@ -32,6 +34,7 @@ export class CarComponent implements OnInit {
   ngOnInit(): void {
     this.getBrands();
     this.createAddInternalCarForm();
+    this.getInternalCarsByUserId();
   }
 
   getBrands() {
@@ -56,10 +59,20 @@ export class CarComponent implements OnInit {
       .addInternalCar(this.internalCarRequest)
       .subscribe((data) => {
         this.internalCarResponse = JSON.parse(data.d.toString());
-        this.toastr.success(this.internalCarResponse.Message);
+        if (this.internalCarResponse.Success) {
+          this.toastr.success(this.internalCarResponse.Message);
+        } else {
+          this.toastr.error(this.internalCarResponse.Message);
+        }
+
+        this.getInternalCarsByUserId();
       });
   }
-
+  getInternalCarsByUserId() {
+    this.carService
+      .getInternalCarsByUserId(this.getUserId())
+      .subscribe((data) => (this.cars = JSON.parse(data.d.toString())));
+  }
   createAddInternalCarForm() {
     this.internalCarForm = this.formBuilder.group({
       ModelId: ['', Validators.required],

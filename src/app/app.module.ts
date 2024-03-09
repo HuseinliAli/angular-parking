@@ -12,7 +12,6 @@ import { LoginGuard } from './guards/login.guard';
 import { CarComponent } from './components/car/car.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InternalCarComponent } from './components/car/internal-car/internal-car.component';
 import { CenterComponent } from './components/center/center.component';
 import { HistoryComponent } from './components/history/history.component';
 
@@ -23,10 +22,9 @@ import { HistoryComponent } from './components/history/history.component';
     NavComponent,
     LoginComponent,
     CarComponent,
-    InternalCarComponent,
 
     CenterComponent,
-     HistoryComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
