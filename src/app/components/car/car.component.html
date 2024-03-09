@@ -40,7 +40,7 @@
               [ngModelOptions]="{ standalone: true }"
               (change)="getModels()"
             >
-              <option value="" disabled selected>Marka Seçiniz</option>
+              <option value="" disabled selected>Marka Seçin</option>
               <option *ngFor="let brand of brands" [value]="brand.Id">
                 {{ brand.Name }}
               </option>
@@ -49,7 +49,7 @@
           <div class="mb-3">
             <label for="carModel" class="form-label me-2">Model</label>
             <select name="carModel" id="carModel" formControlName="ModelId">
-              <option value="" disabled selected>Marka Seçiniz</option>
+              <option value="" disabled selected>Marka Seçin</option>
               <option *ngFor="let model of models" [value]="model.Id">
                 {{ model.Name }}
               </option>

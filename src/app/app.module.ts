@@ -13,6 +13,8 @@ import { CarComponent } from './components/car/car.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InternalCarComponent } from './components/car/internal-car/internal-car.component';
+import { CenterComponent } from './components/center/center.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,9 @@ import { InternalCarComponent } from './components/car/internal-car/internal-car
     LoginComponent,
     CarComponent,
     InternalCarComponent,
+
+    CenterComponent,
+     HistoryComponent,
   ],
   imports: [
     BrowserModule,

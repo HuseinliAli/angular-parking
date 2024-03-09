@@ -11,20 +11,20 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl = 'https://localhost:44345/Services/AccountWebService.asmx/';
+  apiUrl = 'https://localhost:44345/Services/AccountWebService.asmx';
   loggedIn = false;
   loginSubject: Subject<boolean> = new Subject<boolean>();
 
   constructor(private client: HttpClient, private route: Router) {}
 
   registerUser(register: RegisterRequestModel): Observable<ResponseModel> {
-    return this.client.post<ResponseModel>(`${this.apiUrl}Register`, {
+    return this.client.post<ResponseModel>(`${this.apiUrl}/Register`, {
       request: register,
     });
   }
 
   loginUser(login: LoginRequestModel): Observable<ResponseModel> {
-    return this.client.post<ResponseModel>(`${this.apiUrl}Login`, {
+    return this.client.post<ResponseModel>(`${this.apiUrl}/Login`, {
       request: login,
     });
   }

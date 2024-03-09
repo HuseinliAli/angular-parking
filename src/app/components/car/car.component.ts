@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiDataResponseModel } from '../../models/common/apiDataResponse';
-import { BrandModel } from '../../models/cars/brandModel';
-import { ModelModel } from '../../models/cars/modelModel';
+import { BrandModel } from '../../models/cars/brand';
+import { ModelModel } from '../../models/cars/model';
 import { BrandService } from '../../services/brand.service';
 import { ModelService } from '../../services/model.service';
 import { CarService } from '../../services/car.service';

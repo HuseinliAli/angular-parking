@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BrandModel } from '../models/cars/brandModel';
+import { BrandModel } from '../models/cars/brand';
 import { ListResponseModel } from '../models/common/listResponse';
 
 @Injectable({

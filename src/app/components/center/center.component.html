@@ -1,0 +1,84 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Ad</th>
+      <th scope="col">Ümumi yerlər</th>
+      <th scope="col">Boş yerlər</th>
+      <th scope="col">Qiymət/Saat</th>
+      <th scope="col">Xəritədə baxın</th>
+      <th scope="col">Kirayələ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let center of centers">
+      <td>{{ center.Name }}</td>
+      <td class="fw-bold">{{ center.TotalSlots }}</td>
+      <td class="fw-bold text-success">{{ center.AvailableSlots }}</td>
+      <td>{{ center.PricePerHour | currency }}</td>
+      <td>{{ center.Latitude }} {{ center.Longitude }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#addCarModal"
+          (click)="setCenterId(center.Id)"
+        >
+          Park et
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div
+  class="modal fade"
+  id="addCarModal"
+  tabindex="-1"
+  aria-labelledby="addCarModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCarModalLabel">Park anketi</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="startForm" (ngSubmit)="startOrder()">
+          <div>
+            <div class="mb-3">
+              <select name="car" id="car" formControlName="CarId">
+                <option value="" disabled selected>Maşın Seçin</option>
+                <option *ngFor="let car of cars" [value]="car.Id">
+                  {{ car.BrandModel }} ({{ car.CarNumber }})
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Bağla
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#addCarModal"
+            >
+              Park et
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

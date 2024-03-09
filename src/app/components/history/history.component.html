@@ -1,0 +1,37 @@
+<h1 class="h4">Tranzaksiyalar</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Maşın nömrəsi</th>
+      <th scope="col">Park yeri</th>
+      <th scope="col">Başlanğıc tarixi</th>
+      <th scope="col">Bitiş tarixi</th>
+      <th scope="col">Qiymət</th>
+      <th scope="col">ƏDV-li qiymət</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.CarNumber }}</td>
+      <td>{{ order.ParkingCenterName }}</td>
+      <td>{{ order.StartDate }}</td>
+      <td
+        *ngIf="order.EndDate.toString() === '0001-01-01T00:00:00'; else ended"
+      >
+        Davam edir
+      </td>
+      <ng-template #ended
+        ><td>{{ order.EndDate }}</td>
+        <td>{{ order.TotalPrice }}</td>
+        <td>{{ order.TotalPriceWithTax }}</td></ng-template
+      >
+
+      <td *ngIf="order.EndDate.toString() === '0001-01-01T00:00:00'">
+        <button (click)="endOrder(order.Id)" class="btn btn-warning">
+          Sonlandır
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
